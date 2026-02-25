@@ -73,7 +73,7 @@ const ContactSection = () => {
       {/* Background Orb */}
       <CosmicOrb className="top-1/2 right-0 -translate-y-1/2 translate-x-1/2" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="text-primary font-medium text-sm uppercase tracking-widest">Get In Touch</span>
@@ -85,7 +85,7 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full lg:max-w-5xl lg:mx-auto">
           {/* Contact Form */}
           <div className="glass-card rounded-3xl p-8 animate-fade-in-left section-glow">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -146,15 +146,17 @@ const ContactSection = () => {
               <a
                 key={idx}
                 href={info.href}
-                className="glass-card rounded-2xl p-6 flex items-center gap-4 group section-glow"
+                className="glass-card rounded-2xl p-6 flex items-start gap-4 group section-glow"
               >
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-cosmic-violet/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <info.icon className="w-6 h-6 text-primary group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)] transition-all" />
                 </div>
-                <div>
-                  <p className="text-muted-foreground text-sm">{info.label}</p>
-                  <p className="font-medium">{info.value}</p>
-                </div>
+      <div className="min-w-0">
+  <p className="text-muted-foreground text-sm">{info.label}</p>
+  <p className="font-medium text-sm sm:text-base truncate">
+    {info.value}
+  </p>
+</div>
               </a>
             ))}
 

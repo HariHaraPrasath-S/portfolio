@@ -137,7 +137,7 @@ const getPlanetStyle = (type: string) => {
 };
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
@@ -162,7 +162,7 @@ const Navigation = () => {
   }, []);
 
   const handleNavClick = (href: string) => {
-    setIsOpen(false);
+    
     const targetId = href.slice(1); // Remove # from href
     
     // Trigger rocket animation
@@ -181,14 +181,9 @@ const Navigation = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass py-2 shadow-lg shadow-background/50' : 'py-3'}`}>
         <div className="container mx-auto px-4 sm:px-6">
           {/* Main header row */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
             {/* Logo */}
-            <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }} className="flex items-center gap-2 group flex-shrink-0">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-12">
-                <Rocket className="w-5 h-5 text-background" />
-              </div>
-              <span className="font-space font-bold text-lg hidden sm:block">HHP</span>
-            </a>
+            
 
             {/* Planet Navigation - Center */}
             <div className="flex-1 flex justify-center px-2 sm:px-4">
@@ -287,54 +282,11 @@ const Navigation = () => {
               </div>
             </div>
 
-            {/* Hamburger Menu Button */}
-            <button 
-              onClick={() => setIsOpen(!isOpen)} 
-              className="p-2 rounded-xl glass hover:bg-secondary/50 transition-colors flex-shrink-0"
-              aria-label="Toggle menu"
-            >
-              <div className="w-6 h-6 relative flex flex-col justify-center items-center">
-                <span className={`block w-5 h-0.5 bg-foreground rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1'}`} />
-                <span className={`block w-5 h-0.5 bg-foreground rounded-full transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`} />
-                <span className={`block w-5 h-0.5 bg-foreground rounded-full transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-0.5' : 'translate-y-1'}`} />
-              </div>
-            </button>
+          
           </div>
         </div>
 
-        {/* Slide-in Menu */}
-        <div 
-          className={`fixed top-[60px] right-0 h-[calc(100vh-60px)] w-72 glass border-l border-border/50 transition-all duration-500 ease-out ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
-        >
-          <div className="p-6 flex flex-col gap-2">
-            {navItems.map((item, idx) => (
-              <a 
-                key={item.href} 
-                href={item.href} 
-                onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-                className={`px-4 py-3 rounded-xl transition-all duration-300 ${activeSection === item.href.slice(1) ? 'bg-primary/10 text-primary' : 'hover:bg-secondary/50 text-muted-foreground hover:text-foreground'}`}
-                style={{ animationDelay: `${idx * 50}ms` }}
-              >
-                {item.label}
-              </a>
-            ))}
-            <a 
-              href="#contact" 
-              onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }} 
-              className="cosmic-button text-center py-3 mt-4 text-primary-foreground"
-            >
-              Let's Connect
-            </a>
-          </div>
-        </div>
-
-        {/* Overlay when menu is open */}
-        {isOpen && (
-          <div 
-            className="fixed inset-0 top-[60px] bg-background/50 backdrop-blur-sm z-[-1]"
-            onClick={() => setIsOpen(false)}
-          />
-        )}
+        
       </nav>
 
       {/* CSS for animations */}
