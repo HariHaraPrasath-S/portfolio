@@ -13,15 +13,13 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: "Portfolio Message <onboarding@resend.dev>",
       to: "hariharaprasath1142@gmail.com",
-      reply_to: email,
-      subject: "📩 New Portfolio Message",
+      replyTo: email,
+      subject: "New Contact Inquiry",
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-          <h2>📩 New Portfolio Message</h2>
-          <hr />
+        <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
+          <br/>
           <p>${message}</p>
         </div>
       `,
