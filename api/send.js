@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       from: "Portfolio Message <onboarding@resend.dev>",
       to: "hariharaprasath1142@gmail.com",
       replyTo: email,
-      subject: "New Contact Inquiry",
+      subject: "Message from Portfolio",
       html: `
         <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
           <p><strong>Name:</strong> ${name}</p>
