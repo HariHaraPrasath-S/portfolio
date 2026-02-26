@@ -3,7 +3,6 @@ import { Mail, Phone, MapPin, Instagram, Linkedin, Send, Github } from 'lucide-r
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
-import { supabase } from '@/integrations/supabase/client';
 import CosmicOrb from './CosmicOrb';
 
 const contactInfo = [
@@ -41,29 +40,33 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          message: formData.message.trim(),
-        },
-      });
+  e.preventDefault();
+  setIsSubmitting(true);
 
-      if (error) throw error;
+  try {
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+      }),
+    });
 
-      toast.success('Message sent successfully! I\'ll get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error: any) {
-      console.error('Error sending message:', error);
-      toast.error('Failed to send message. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    if (!response.ok) throw new Error("Failed to send");
+
+    toast.success("Message sent successfully! I'll get back to you soon.");
+    setFormData({ name: "", email: "", message: "" });
+  } catch (error) {
+    console.error("Error sending message:", error);
+    toast.error("Failed to send message. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
