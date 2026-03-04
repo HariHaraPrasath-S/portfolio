@@ -1,6 +1,24 @@
-import { Award, Shield, Cloud, BarChart3, Settings, Cog } from 'lucide-react';
+import { 
+  Award,
+  DraftingCompass,
+  Shield,
+  Cloud,
+  BarChart3,
+  Settings,
+  Cog,
+  Laptop,
+  Cpu,
+  Database,
+  Camera
+} from 'lucide-react';
 
 const certifications = [
+  {
+    title: 'AutoCAD Electrical Essentials',
+    issuer: 'SourceCAD',
+    year: '2026',
+    icon: DraftingCompass,
+  },
   {
     title: 'Data Analytics MasterClass',
     issuer: 'NoviTech R&D Pvt. Ltd.',
@@ -23,13 +41,13 @@ const certifications = [
     title: 'Introduction to Industry 4.0 and Industrial Internet of Things',
     issuer: 'NPTEL',
     year: '2024',
-    icon: Cloud,
+    icon: Cpu,
   },
   {
     title: 'CCTV Installation Technician',
     issuer: 'ESSCI',
     year: '2024',
-    icon: Settings,
+    icon: Camera,
   },
   {
     title: 'NPTEL Cloud Computing',
@@ -41,12 +59,13 @@ const certifications = [
     title: 'Advanced Power BI',
     issuer: 'I-BACUS-TECH',
     year: '2023',
-    icon: BarChart3,
+    icon: Database,
   },
-  {  title: 'Digi-Trick Solving on Automation',
+  {
+    title: 'Digi-Trick Solving on Automation',
     issuer: 'K.S.R College Of Engineering',
     year: '2022',
-    icon: BarChart3,
+    icon: Cog,
   },
 ];
 
